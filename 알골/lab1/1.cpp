@@ -19,7 +19,7 @@ public:
 	}
 
 private:
-	int _num;
+	int _num; 
 };
 int main()
 {
