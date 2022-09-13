@@ -12,7 +12,7 @@ class Stack2
        }
        ~Stack2()
        {
-        delete head;
+        delete[] head;
        }
        void push(itemType v)
        {
