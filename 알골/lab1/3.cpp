@@ -8,11 +8,12 @@ class Stack2
     public:
        Stack2()
        {
-        head = nullptr;
+        head = new node();
+        head -> next = nullptr;
        }
        ~Stack2()
        {
-        delete[] head;
+        delete head;
        }
        void push(itemType v)
        {
@@ -22,19 +23,18 @@ class Stack2
             head = z;
        }
        itemType pop()
-       {    
+       {
         itemType a;
         a = head -> key;
         head = head -> next;
-        return a;
-            
+        return a;       
        }
        int empty()
        {
             if(head -> next == nullptr)
                 return 1;
             else
-                return 0; 
+                return 0;
        }
 
     private:
