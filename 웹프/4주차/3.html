@@ -1,0 +1,25 @@
+<html>
+    <head><title>Q3</title></head>
+    <style>
+        #map {
+            visibility:hidden;
+        }
+    </style>
+    <script>
+        function openMap() {
+            var o = document.getElementById("map");
+            o.style.visibility = "visible";
+        }
+        function closeMap() {
+            var c = document.getElementById("map");
+            c.style.visibility = "hidden";
+        }
+    </script>
+    <body>
+        <form>
+            <input type="radio" name="test" value="숨기기" checked="checked" onclick="closeMap()"> 숨기기
+            <input type="radio" name="test" value="보이기" onclick="openMap()"> 보이기
+        </form>
+        <img id="map" src="Q3_map.jpg">
+    </body>
+</html>

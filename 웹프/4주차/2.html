@@ -1,0 +1,26 @@
+<html>
+    <head><title>Q2</title></head>
+    <script>
+        function changeDiv1() {
+            document.getElementById("Div1").style.backgroundColor = "black";
+            document.getElementById("Div1").style.color = "white";
+        }
+        function changeDiv2() {
+            var Addtext = document.createTextNode('div2의 영역이죠');
+            document.getElementById("Div2_1").appendChild(Addtext);
+            
+        }
+        function ld_img() {
+        var oImg = document.createElement("img");
+        oImg.setAttribute("src", 'Q2_back.JPG');
+        document.getElementById("Div2_2").appendChild(oImg);
+        }
+    </script>
+    <body onload="ld_img()">
+        <div id="Div1" onClick="changeDiv1()">여긴 DIV1영역</div>
+        <div id="Div2" onClick="changeDiv2()">
+            <div id="Div2_1">여긴 DIV2영역</div>
+            <div id="Div2_2"></div>
+        </div>
+    </body>
+</html>
