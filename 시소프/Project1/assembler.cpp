@@ -4,8 +4,11 @@
 #include <string>
 #include <algorithm>
 #include <map>
+#include <iomanip>
 using namespace std;
 map<string, int> m;
+
+int total_length;
 
 struct node
 {
@@ -96,7 +99,11 @@ public:
                 }
             }
         }
-        return NULL;
+        else if (ht[hashKey] == NULL)
+        {
+            cout << str << endl;
+            return NULL;
+        }
     }
 };
 
@@ -142,7 +149,6 @@ public:
     struct node_op *searchData(string str)
     {
         int hashKey = getKey(str);
-
         if (ht[hashKey] != NULL)
         {
             if (ht[hashKey]->opcode == str)
@@ -162,7 +168,10 @@ public:
                 }
             }
         }
-        return NULL;
+        else if (ht[hashKey] == NULL)
+        {
+            return NULL;
+        }
     }
 };
 
@@ -215,17 +224,12 @@ int toDec_op(string str)
     return ret;
 }
 
-// objfile 작성 시 loc읽어서 앞자리에 0몇개 출력할지 문자열로 저장
-string getZero(string loc)
+// stringstream 으로 얻은 문자열은 공백이 없으므로 6-길이 만큼 0추가
+string getZero2(string loc)
 {
     int count = 0;
     string str = "";
-    for (int i = 0; i < 6; i++)
-    {
-        if (loc[i] == ' ')
-            count++;
-    }
-    loc = loc.substr(0, loc.find(' '));
+    count = 6 - loc.length();
     for (int i = 0; i < count; i++)
     {
         str += "0";
@@ -240,30 +244,73 @@ int HexToDec(string str) // 16진수 문자열을 10진수 정수로 변환
 
     for (int i = 0; i < str.length(); i++)
     {
-        if('0' <= str[i] && str[i] <= '9') 
+        if ('0' <= str[i] && str[i] <= '9')
             ret = ret * 16 + str[i] - '0';
-        else if('a' <= str[i] && str[i] <= 'f')
+        else if ('a' <= str[i] && str[i] <= 'f')
             ret = ret * 16 + str[i] - '0' - 7;
     }
     return ret;
 }
 
-string DecToHex(int dec)    //10진수 정수를 16진수 문자열로 변환
+string DecToHex(int dec) // 10진수 정수를 16진수 문자열로 변환
 {
     int i, k = 0, m, n;
-	//char c_hex[] = "0123456789ABCDEF";
-    char c_hex[] =  "0123456789ABCDEF";
-    string hex;
+    // char c_hex[] = "0123456789ABCDEF";
+    char c_hex[] = "0123456789abcdef";
+    char hex[6] = {0};
+    int flag = 0;
+    if (dec <= 15)
+    {
+        flag = 1;
+    }
     while (1)
-	{
-		m = dec / 16; // 16으로 나눈 몫
-		n = dec - (m * 16); // 나머지
-		hex[k++] = c_hex[n];
-		if (m <= 0) break;
-		dec = m;
-	}
-    
-    return hex;
+    {
+        m = dec / 16;       // 16으로 나눈 몫
+        n = dec - (m * 16); // 나머지
+        hex[k++] = c_hex[n];
+        if (m <= 0)
+            break;
+        dec = m;
+    }
+    char ret[6] = {0};
+    int j = k - 1;
+    if (flag == 1)
+    {
+        ret[0] = '0';
+        for (int i = 1; i < k + 1; i++)
+        {
+            ret[i] = hex[j];
+            j--;
+        }
+    }
+    else
+        for (int i = 0; i < k; i++)
+        {
+            ret[i] = hex[j];
+            j--;
+        }
+
+    return ret;
+}
+
+void GetInstruction(string str, string *token)
+{
+    if (str[0] == '.')
+    {
+        token[0] = str.substr(0, str.find('\n'));
+        token[1] = token[2] = token[3] = "";
+        return;
+    }
+
+    token[0] = str.substr(0, 6);
+    token[0] = token[0].substr(0, token[0].find(' '));
+    token[1] = str.substr(8, 8);
+    token[1] = token[1].substr(0, token[1].find(' '));
+    token[2] = str.substr(17, 6);
+    token[2] = token[2].substr(0, token[2].find(' '));
+    token[3] = str.substr(25, 25);
+    token[3] = token[3].substr(0, token[3].find(' '));
+    return;
 }
 
 void Pass1(string fname, string fname2)
@@ -271,8 +318,7 @@ void Pass1(string fname, string fname2)
 
     ifstream rf(fname);
     ofstream of(fname2); // intfile
-    // ifstream is("SYMTAB.txt"); //읽을때
-    // ofstream fs("SYMTAB.txt"); //쓸 때
+
     string str;
     string label, opcode, operand;
     int locctr = 0, errorflag = 0;
@@ -329,12 +375,9 @@ void Pass1(string fname, string fname2)
             opcode = opcode.substr(0, opcode.find(' '));
             operand = operand.substr(0, operand.find(' '));
 
-            if (opcode == "start")
-                continue;
-
             if (opcode != "end")
             {
-                if (label != ".")
+                if (label != ".") // comment line 처리
                 {
                     if (!label.empty())
                     {
@@ -354,52 +397,26 @@ void Pass1(string fname, string fname2)
                             struct node *tmp = symbtab.searchData(label);
                             tmp->flag = 1;
                         }
+                        struct node* temp = symbtab.searchData(label);
+                        cout << "symbol : " << temp->symbol << "    locctr : " << hex << temp->locctr << "\tflag : " << temp->flag << endl;
                     }
 
                     of << hex << locctr << "    ";
                     of << str;
                     of << endl;
 
-                    // if (check_op(opcode))
-                    // {
-                    //     if(check_op(opcode))
-                    //         locctr += 3;
-                    //     else if (opcode == "word")
-                    //         locctr += 3;
-                    //     else if (opcode == "resw")
-                    //         locctr += 3 * stoi(operand);
-                    //     else if (opcode == "resb")
-                    //         locctr += stoi(operand);
-                    //     else if (opcode == "byte")
-                    //         locctr += operand.length();
-                    //     else
-                    //         locctr += 3;
-                    // }
-                    // else
-                    //     errorflag = 1;
-
                     if (check_op(opcode))
-                    {
                         locctr += 3;
-                        // cout << "check" << endl;
-                    }
                     else if (opcode == "word")
                         locctr += 3;
                     else if (opcode == "resw")
-                    {
                         locctr += 3 * stoi(operand);
-                        // cout << "resw\n";
-                    }
                     else if (opcode == "resb")
                         locctr += stoi(operand);
                     else if (opcode == "byte")
                         locctr += operand.length();
                     else
-                    {
                         locctr += 3;
-                        cout << "check\n";
-                    }
-                    // cout << "endcheck\n";
                 }
                 else if (label == ".")
                 {
@@ -409,15 +426,15 @@ void Pass1(string fname, string fname2)
             }
             else if (opcode == "end")
             {
+                symbtab.insertHT(label, locctr, symbflag);
                 of << hex << locctr << "    ";
                 of << str;
                 of << endl;
+                total_length = locctr;  //pass2에서 total_length 사용
             }
         }
         rf.close();
         of.close();
-        // fs.close();
-        // is.close();
     }
     else
     {
@@ -430,51 +447,146 @@ void Pass1(string fname, string fname2)
 // 7~8 길이
 // 9~69 object 코드
 
-//현재 symbtab 주소, optab 넘버는 해시테이블에 10진수로 저장됨
-//출력할 때 16진수로 변환해야함
 void Pass2()
 {
     ifstream intf("Intfile.txt");
     ofstream objf("Objfile.txt");
-    string str;
-    string label, opcode, operand, locctr;
-    // int locctr;
+
+    string objectCode, textRecord, str, token[4];
+    string address, label, opcode, operand, operand_num, opcode_num;
+    int startAddr, textAddr, oper_value;
     if (intf.is_open())
     {
         getline(intf, str);
-        locctr = str.substr(0, 6);
-        opcode = str.substr(17, 6);
-        label = str.substr(8, 6);
-        opcode = opcode.substr(0, opcode.find(' '));
+        GetInstruction(str, token);
+        // cout << str << endl;
+        address = token[0];
+        label = token[1];
+        opcode = token[2];
+        operand = token[3];
+        startAddr = HexToDec(address);
+        textAddr = startAddr;
+        total_length = total_length - startAddr;
+        objf << "h";
         if (opcode == "start")
         {
-            // cout << opcode;
-            // listing line
-            string tmp = getZero(locctr);
-            objf << "H";
             objf << label;
-            objf << tmp;
-            string len;
-            //길이 구하는 라인, end 주소 가져와서 startaddr - endaddr H레코드에 넣음
-            while (getline(intf, str))
+            for (int i = 0; i < 6 - label.length(); i++)
+                objf << " ";
+            getline(intf, str);
+            GetInstruction(str, token);
+
+            address = token[0];
+            label = token[1];
+            opcode = token[2];
+            operand = token[3];
+        }
+        objf << setfill('0') << setw(6) << hex << textAddr;
+        objf << setw(6) << hex << total_length << endl;
+        while (opcode != "end")
+        {
+            if (label != ".")
             {
-                string end = str.substr(17, 3);
-                if (end == "end")
+                if (check_op(opcode))
                 {
-                    len = str.substr(0, 6); // start주소(locctr) - end주소(len)
-                    // 16진수 문자열 10진수로 변환해서 계산하고 다시 16진수 문자열로
-                    int startaddr = HexToDec(locctr);
-                    int endaddr = HexToDec(len);
-                    int total_length = endaddr - startaddr;
-                    cout << total_length << endl;
-                    cout << DecToHex(total_length) << endl;
+                    if (operand != "")
+                    {
+                        if (operand.find(",x") != string::npos)
+                        { //,x찾으면 인덱스부호 1
+                            operand = operand.substr(0, operand.find(",x"));
+                            operand_num = DecToHex((symbtab.searchData(operand)->locctr) + 32768);
+                        }
+                        else
+                            operand_num = DecToHex(symbtab.searchData(operand)->locctr);
+                    }
+                    else
+                    {
+                        operand_num = "0000";
+                    }
+                    opcode_num = DecToHex(optab.searchData(opcode)->opnumber);
+                    objectCode += opcode_num + operand_num;
+                }
+
+                else if (opcode == "word" || opcode == "byte")
+                {
+                    if (opcode == "word")
+                    {
+                        oper_value = stoi(operand);
+                        string sss = getZero2(DecToHex(oper_value));
+                        objectCode += sss;
+                    }
+                    else
+                    {                                              // byte인 경우
+                        if (operand.find("c'", 0) != string::npos) // c'aaa'인경우
+                        {
+                        }
+                        else if (operand.find("x'", 0) != string::npos) // x'101010'경우
+                        {
+                            for (int i = 2; i < operand.length() - 1; i++)
+                            {
+                                objectCode += operand[i];
+                            }
+                        }
+                    }
                 }
             }
+            if (textRecord.length() / 2 + objectCode.length() / 2 > 30 && textRecord != "")
+            {
+                objf << "t" << setfill('0') << setw(6) << hex << textAddr;
+                objf << setfill('0') << setw(2) << hex << (textRecord.length() / 2) << textRecord << endl;
+                textAddr += textRecord.length() / 2;
+                textRecord = objectCode;
+            }
+            else if ((opcode == "resw" || opcode == "resb") && textRecord != "")
+            {
+                objf << "t" << setfill('0') << setw(6) << hex << textAddr;
+                objf << setfill('0') << setw(2) << hex << (textRecord.length() / 2) << textRecord << endl;
+                if (opcode == "resw")
+                {
+                    textAddr += (textRecord.length() / 2) + 3 * stoi(operand);
+                }
+                else
+                {
+                    textAddr += (textRecord.length() / 2) + stoi(operand);
+                }
+                textRecord = "";
+            }
+            else if (opcode == "resw" || opcode == "resb")
+            {
+                if (opcode == "resw")
+                {
+                    textAddr += (textRecord.length() / 2) + 3 * stoi(operand);
+                }
+                else if (opcode == "resb")
+                {
+                    textAddr += (textRecord.length() / 2) + stoi(operand);
+                }
+            }
+            else
+            {
+                textRecord += objectCode;
+            }
+            getline(intf, str);
+            GetInstruction(str, token);
+
+            address = token[0];
+            label = token[1];
+            opcode = token[2];
+            operand = token[3];
+            objectCode = "";
+            operand_num = "";
+            oper_value = 0;
         }
+        if (textRecord != "")
+        {
+            objf << "t" << setfill('0') << setw(6) << hex << textAddr;
+            objf << setfill('0') << setw(2) << hex << (textRecord.length() / 2) << textRecord << endl;
+        }
+
+        objf << "e" << setfill('0') << setw(6) << hex << startAddr << endl;
     }
-    else
-    {
-        cout << "No Intfile !! \n";
+    else {
+        cout << "No such file !!! \n";
     }
 }
 
