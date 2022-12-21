@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>나의 소개</title>
+    </head>
+    <script>
+        function show() {
+            document.getElementById("fig").src="elvis.jpeg";
+        }
+        function hide() {
+            document.getElementById("fig").src="shrek.jpeg";
+        }
+    </script>
+    <style>
+        body {
+            background-color: linen; color:brown;
+            margin-left:40px; margin-left:40px;
+        }
+        h2 {
+            text-align :center; color:darked;
+        }
+        hr {
+            height: 10px; border:solid grey;
+            background-color:grey
+        }
+        span { color:violet; font-size:20px;}
+    </style>
+    <body>
+        <h2>Elvis Presely</h2>
+        <hr>
+        <img id="fig" src="elvis.jpeg" height="300"><br>
+        He was an American singer and actor. In November 1956, he made his film debut in
+        <span onmouseover="show()" onmouseout="hide()">
+            Love me Tender
+        </span>. He is often referred to as "<span>the king of Rock ans Roll</span>".
+    </body>
+</html>

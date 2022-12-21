@@ -1,0 +1,36 @@
+1000    test3    start   1000                                            
+1000    first    stl     retadr                                          
+1003             jsub    setting                                         
+1006             lda     min                                             
+1009             j       last                                            
+100c    retadr   resw    1                                               
+100f    setting  lda     zero                                            
+1012             sta     index                                           
+1015             ldx     index                                           
+1018             lda     table,x                                         
+101b             sta     min                                             
+101e    loop     lda     index                                           
+1021             add     three                                           
+1024             sta     index                                           
+1027             ldx     index                                           
+102a             lda     table,x                                         
+102d             comp    min                                             
+1030             jlt     store                                           
+1033    loop2    lda     index                                           
+        .                                                                                                                              
+1036             comp    count                                           
+1039             jlt     loop                                            
+103c             rsub                                                    
+103f    store    sta     min                                             
+1042             j       loop2                                           
+1045    table    word    12                                              
+1048             word    9                                               
+104b             word    8                                               
+104e             word    22                                              
+1051             word    6                                               
+1054    count    word    12                                              
+1057    index    resb    1                                               
+1058    min      resw    2                                               
+105e    zero     word    0                                               
+1061    three    word    3                                               
+1064    last     end     first                                           

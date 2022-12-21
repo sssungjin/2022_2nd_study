@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style type="text/css">
+        div {float:left; margin:10px; width:200px; height:200px;
+        border:1px solid gray; text-align:center;}
+        #item1, #item2, #item3 {width:50px; height:50px;
+        text-align:center; font-weight:bold;}
+
+        #item1 {background-color:red;}
+        #item2 {background-color:skyblue;}
+        #item3 {background-color:yellow;}
+        p, pre {font-weight:bold; text-align:center;}
+    </style>
+    <script type="text/javascript">
+        function dragover(wpevent) 
+        { wpevent.preventDefault();}
+        function dragstart(wpevent)
+        {wpevent.dataTransfer.effectAllowed='move';
+        wpevent.dataTransfer.setData("Text", wpevent.target.id);}
+        function dragend(wpevent)
+        {wpevent.dataTransfer.clearData("Text");}
+        function drop(wpevent)
+        {
+            wpevent.preventDefault();
+            var item=wpevent.dataTransfer.getData("Text");
+            wpevent.target.appendChild(document.getElementById(item));
+            wpevent.stopPropagation();
+        }
+        </script>
+</head>
+<body>
+    <p> 
+        장바구니에 물건을 담으세요!
+        <pre> [진열대]      [장바구니]  </pre>
+    </p>
+    <div id="div1" ondrop="drop(event)" ondragover="dragover(event)">
+        <div id="item1" draggable="true" ondragstart="dragstart(event)"
+            ondragend="dragend(event)">사과</div>
+        <div id="item2" draggable="true" ondragstart="dragstart(event)"
+            ondragend="dragend(event)"> 배</div>
+        <div id="item3" draggable="true" ondragstart="dragstart(event)"
+            ondragend="dragend(event)">귤</div>
+    </div>
+    <div id="div2" ondrop="drop(event)" ondragover="dragover(event)">
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+label	: test3
+opcode	: start
+operand	: 1000
+
+label	: first
+opcode	: stl
+operand	: retadr
+
+label	: 
+opcode	: jsub
+operand	: setting
+
+label	: 
+opcode	: lda
+operand	: min
+
+label	: 
+opcode	: j
+operand	: last
+
+label	: retadr
+opcode	: resw
+operand	: 1
+
+label	: setting
+opcode	: lda
+operand	: zero
+
+label	: 
+opcode	: sta
+operand	: index
+
+label	: 
+opcode	: ldx
+operand	: index
+
+label	: 
+opcode	: lda
+operand	: table,x
+
+label	: 
+opcode	: sta
+operand	: min
+
+label	: loop
+opcode	: lda
+operand	: index
+
+label	: 
+opcode	: add
+operand	: three
+
+label	: 
+opcode	: sta
+operand	: index
+
+label	: 
+opcode	: ldx
+operand	: index
+
+label	: 
+opcode	: lda
+operand	: table,x
+
+label	: 
+opcode	: comp
+operand	: min
+
+label	: 
+opcode	: jlt
+operand	: store
+
+label	: loop2
+opcode	: lda
+operand	: index
+
+label	: 
+opcode	: comp
+operand	: count
+
+label	: 
+opcode	: jlt
+operand	: loop
+
+label	: 
+opcode	: rsub
+operand	: 

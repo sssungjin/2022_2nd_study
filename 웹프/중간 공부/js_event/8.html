@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>asd</title>
+        <script>
+            function drawImage() {
+                let sel = document.getElementById("fruits");
+                let img = document.getElementById("fruitimage");
+                img.src = sel.options[sel.selectedIndex].value;
+            }
+        </script>
+    </head>
+    <body onload = "drawImage()">
+        <form>
+            <select id="fruits" onchange="drawImage()">
+                <option value="spade-A.png">A</option>
+                <option value="spade-2.png">2</option>
+                <option value="spade-3.png">3</option>
+            </select>
+            <img id="fruitimage" src="spade-A.png" alt="">
+        </form>
+    </body>
+</html>

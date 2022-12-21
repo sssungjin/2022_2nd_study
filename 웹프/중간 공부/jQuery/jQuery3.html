@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>jQuery</title>
+        <style>
+            .over{border-radius:50px;}
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('div').css('width', 100);
+                $('div').css('height', 100);
+                $('div').css('margin', 10);
+                $('div').css('backgroundColor', 'blue');
+            
+                $('#first').hover(function() {
+                    $('#first').addClass('over');
+                },function(){
+                    $('#first').removeClass('over');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="first"></div>
+    </body>
+</html>

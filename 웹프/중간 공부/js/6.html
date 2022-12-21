@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>큰자리수 낮은자리수</title>
+        <script>
+            function comp(n) {
+                let k = parseInt(n);
+                let b = k%10;
+                while(true) {
+                    k = k/10;
+                    k = Math.floor(k);
+                    if(Math.floor(k/10) == 0)
+                        break;
+                }
+                if(k > b) 
+                document.write("큰자리수가 크다");
+                else if(k < b)
+                document.write("작은자리수가 크다");
+                else
+                    document.write("같다");
+
+            }
+        </script>
+    </head>
+    <body>
+        <script>
+            let n = prompt("정수를 입력하세여");
+            comp(n);
+        </script>
+    </body>
+</html>

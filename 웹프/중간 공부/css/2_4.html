@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            padding:0px;
+            margin:0px;
+            height:100%; 
+        }
+        header {
+            margin-top:0%;
+            overflow:hidden;
+            height:20%;
+            background-color:yellow;
+        }
+        footer {
+            height : 10%;
+            background-color:blueviolet;
+        }
+        section {
+            margin-top:3%;
+            margin-right:3%;
+            margin-left:3%;
+            height:72%;
+            background-color: pink;
+        }
+        
+    </style>
+</head>
+<body>
+    <header><h3>설문지</h3><p>소프트웨어 기술에 대한 ㅇㄴㅇ</p></header>
+    <section>
+        학년 <input type='radio' name="학년" value="1학년">1학년
+         <input type='radio' name="학년" value="2학년">2학년
+         <input type='radio' name="학년" value="3학년">3학년
+        <br>
+         성별 <input type="radio" name="gender" value="남">남
+          <input type="radio" name="gender" value="여">여
+          <br>
+        관심 분야 
+        <select id="hobby">
+            <option value="모바일 소프트웨어">모바일 소프트웨어</option>
+            <option value="AI">AI</option>
+            <option value="서버">서버</option>
+        </select>
+        <br>
+        진로 <input type="radio" name="job" value="개발">개발
+        진로 <input type="radio" name="job" value="기획">기획
+        진로 <input type="radio" name="job" value="영업">영업
+        <br>
+        <p>
+        남기고 싶은 말 <textarea rows="4" cols="50" placeholder="글을 남겨주세요"></textarea>
+        </p>
+    </section>
+</body>
+</html>

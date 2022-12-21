@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>HTML DOM 트리</title>
+        
+    </head>
+    <body>
+        <h3>DOM객체 P의 프로퍼티, 스타일, 이벤트 리스너</h3>
+        <hr>
+        <p id="firstP"
+        style="color:blue; background:yellow"
+        onclick="this.style.color='orange'">
+        이것은 <span style="color:red">
+        문장입니다.</span>
+    </p>
+    <script>
+        let p = document.getElementById("firstP");
+        let text = "p.id = " + p.id + "\n";
+        text += "p.tagName = " + p.tagName + "\n";
+        alert(text);
+    </script>
+    </body>
+</html>

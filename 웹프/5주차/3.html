@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>글씨체 변경하기</title>
+        
+    </head>
+    <script>
+
+        function click_button() {
+        var printFont = document.getElementById('output');
+        var toChange = document.getElementById('test').value;
+
+        localStorage.setItem("font", toChange);
+        alert("글씨체 변경 완료!");
+        var tmp = localStorage.getItem("font");
+        printFont.style.fontFamily = tmp;
+       }
+    </script>
+    <body>
+        <br>
+        <div id = "output" style="font-size: 30px;";>안녕하세요~ 반갑습니다.</p>
+        <input type="text" id="test" name="fontname">
+        <input type="button" id="my_b" value="글씨체 변경" onClick="click_button()">
+        
+    </body>
+
+</html>

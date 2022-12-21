@@ -1,0 +1,30 @@
+<html>
+    <head><title>문제1</title>
+        <style type="text/css">
+            canvas {border : 1px solid gray;}
+        </style>
+    </head>
+    <body>
+        <canvas id = 'cvs' width="300" height="300"></canvas>
+        <script>
+            var wpcanvas = document.getElementById("cvs");
+            var wpcontext = wpcanvas.getContext("2d");
+            
+            wpcontext.fillStyle="orange";
+            wpcontext.shadowColor="gray";
+            wpcontext.shadowBlur=10;
+            wpcontext.shadowOffsetX=30;
+            wpcontext.shadowOffsetY=30;
+
+            wpcontext.beginPath();
+            wpcontext.moveTo(50,80);
+            wpcontext.lineTo(150,30);
+            wpcontext.lineTo(125,80);
+            wpcontext.lineTo(150,130);
+            wpcontext.closePath();
+            wpcontext.fill();
+            
+
+        </script>
+    </body>
+</html>

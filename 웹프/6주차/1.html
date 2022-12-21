@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Q1</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+        $(function () {
+                    $(".box").mouseenter(function(){
+                        $(this).css('background','purple');
+                        $(".word").text("마우스 포인터가 안에 있을 경우 박스는 보라색 입니다.");
+});
+                    $(".box").mouseleave(function(){
+                            $(this).css('background','blue');
+                        $(".word").text("마우스 포인터가 밖에 있을 경우 박스는 파랑색 입니다.");
+
+});
+        });
+    </script>
+</head>
+<body>
+    <div class="box" style="width:200px; height:200px; background:indianred"></div>
+    <p class="word">박스에 마우스 포인터를 올리고 내려 보세요.</p>
+</body>
+
+</html>

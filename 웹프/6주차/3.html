@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Q3</title>
+        <style>
+            div {
+                width: 270px;
+                height: 270px;
+                line-height: 5;
+                text-align: center;
+                background-color: steelblue;
+                color:white;
+                font-size: 50;
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(function(){
+                $("#start").click(function(){
+                    $("#box").show('normal').fadeOut('normal').slideDown('slow');
+                });
+                $("#pause").click(function(){
+                    $("#box").hide();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <button id="start">시작</button>
+        <button id="pause">정지</button> <br><br>
+        <div id="box">1</div>
+    </body>
+</html>

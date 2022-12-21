@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        #layer1 {
+            position: absolute;
+            left: 50px;
+            top: 20px;
+            width: 150px;
+            height: 100px;
+            background: green;
+            z-index: 1;
+        }
+
+        #layer2 {
+            position: absolute;
+            left: 100px;
+            top: 90px;
+            width: 150px;
+            height: 100px;
+            background: yellow;
+            z-index: 2;
+        }
+
+        .white {
+            background: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="layer1" class="white">
+        <center><br>초록 색종이</center>
+    </div>
+    <div id="layer2">
+        <center><br> 노랑 색종이 </center>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Q4</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(function(){
+                $("#change_url").click(function() {
+                    $("a").attr("href", "http://lib.dongguk.edu/")
+                })
+                $("#change_pic").click(function(){
+                    $("#myimg").attr("src", "2.png");
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <a href="https://www.dongguk.edu/main">페이지 이동</a>
+        <button id="change_url">URL 변경</button>
+        <br><br>
+        <img id="myimg" src="1.png"></div><br><br>
+        <button id="change_pic">사진 변경</button>
+    </body>
+</html>

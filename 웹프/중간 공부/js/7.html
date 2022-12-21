@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>eval</title>
+        <script>
+            function ev(n) {
+                let ret = eval(n);
+                document.write(n + " = " + ret);
+            }
+        </script>
+    </head>
+    <body>
+        <script>
+            let n = prompt("수식 입력");
+            ev(n);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>jQuery</title>
+        <style>
+            #box{
+                width:100px; height:100px;
+                background:greenyellow;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(function() {
+                $('button').click(function() {
+                    $('#box').animate({
+                        width:200,
+                        height:200
+                    }, 1000);
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div id="box"></div>
+        <button>click</button>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("button").click(function() {
+                    alert($("#dog").attr("src"));
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <img id="dog" src="grape.jpg"
+        alt="EMPTY!" width="120" height="100"/><br>
+        <button>attr()</button>
+    </body>
+</html>

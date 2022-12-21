@@ -1,0 +1,12 @@
+first   1000     0
+retadr  100c     0
+setting 100f     0
+loop    101e     0
+loop2   1033     0
+store   103f     0
+table   1045     0
+count   1054     0
+index   1057     0
+min     1058     0
+zero    105e     0
+three   1061     0

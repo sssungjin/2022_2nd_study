@@ -1,0 +1,25 @@
+<html>
+    <head><title></title>
+    <script>
+        function star(s) {
+            let n = parseInt(s);
+            if(!isNaN(n)) {
+                for(let i = 1; i <= n; i++) {
+                    for(let j = 0; j < i; j++) {
+                        document.write("*");
+                    }
+                    document.write("<br>");
+                }
+            }
+            else
+                document.write("입력 오류입니다.");
+        }
+    </script>
+    </head>
+    <body>
+        <script>
+        let s = prompt("정수를 입력하세요");
+            star(s);
+    </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>1</title>
+
+    </head>
+    <body>
+        <script>
+            if(typeof(Storage) != "undefined")
+            {
+                function get() {
+                    var wpfont = localStorage.font;
+                    if(wpfont) {
+                        document.getElementById("txt").style.fontFamily = wpfont;
+                    }
+                }
+                function set(wpfont) {
+                    localStorage.font = wpfont;
+                    document.getElementById("txt").style.fontFamily = wpfont;
+                }
+            }
+            else {
+                document.getElementById("output").innerHTML = "당신의 브라우저에서는 웹 스토리지를 지원하지 않습니다 : "
+            }
+        </script>
+        <input type="text" id="font" size="10">
+        <input type="button" value="글씨체 변경" onclick="set(document.getElementById('font').value)"><br>
+        <p id="txt">안녕하세요!</p>
+        <div id="output"> </div>
+    </body>
+</html>
+

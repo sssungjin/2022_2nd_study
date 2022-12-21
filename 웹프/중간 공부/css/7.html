@@ -1,0 +1,48 @@
+<html>
+    <head><title>셀렉터</title>
+    <style>
+        h3, li {
+            color : brown;
+        }
+        div > div > strong {
+            background : yellow;
+        }
+        ul strong {
+            color : dodgerblue;
+        }
+        .warning {
+            color : red;
+        }
+        body.main {
+            background : mistyrose;
+        }
+        #list span {
+            color:forestgreen;
+        }
+        h3:first-letter{
+            color : red;
+        }
+        li:hover {
+            background:yellowgreen;
+        }
+        hr {
+            background-color : gray;
+            height:1px;
+        }
+    </style>
+    </head>
+    <body class="main">
+        <h3>Web programming</h3>
+        <hr>
+        <div>
+            <div>2학기 <strong>학습 내용</strong>입니다.</div>
+            <ul id="list">
+                <li><span>HTML5</span></li>
+                <li><string>CSS</string></li>
+                <li>javascript</li>
+
+            </ul>
+            <div class="warning">60점 이하는 F!</div>
+        </div>
+    </body>
+</html>

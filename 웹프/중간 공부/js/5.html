@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>prompt</title>
+        <script>
+            function gogo(day) {
+                document.write("<h3>월화수목금토일</h3><hr><br>");
+                if(day == "월" || day == "화" || day == "수" || day == "목") {
+                    document.write(day + "는(은) 출근");
+                }
+                else
+                document.write(day + "는 휴일!");
+            } 
+        </script>
+
+    </head>
+    <body>
+        <script>
+            let day = prompt("월화수목금토일 중에서 입력하세요");
+            gogo(day);
+        </script>
+    </body>
+</html>

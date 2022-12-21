@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('button').click(function(){
+                    $('#logo').show().fadeOut('slow').slideDown('slow').fadeIn('slow');
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <button>메소드 체이닝 시작</button>
+        <img src="dragonfly.jpeg" id="logo" style="display:none">
+    </body>
+</html>

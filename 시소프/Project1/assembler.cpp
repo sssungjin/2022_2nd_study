@@ -101,7 +101,6 @@ public:
         }
         else if (ht[hashKey] == NULL)
         {
-            cout << str << endl;
             return NULL;
         }
     }
@@ -204,24 +203,6 @@ int toHex(int locctr)
     }
     tmp = (locctr % 10) * mul + tmp;
     return tmp;
-}
-
-// optab의 해시테이블에 넣을 때 16진수 opnum을 10진수로 변환
-int toDec_op(string str)
-{
-    int ret = 0;
-    for (int i = 0; i < 2; i++)
-    {
-        if (str[i] >= 'A' && str[i] <= 'F')
-        {
-            ret = ret * 16 + str[i] - 55;
-        }
-        else if (str[i] >= '0' && str[i] <= '9')
-        {
-            ret = ret * 16 + str[i] - 48;
-        }
-    }
-    return ret;
 }
 
 // stringstream 으로 얻은 문자열은 공백이 없으므로 6-길이 만큼 0추가
@@ -331,7 +312,7 @@ void Pass1(string fname, string fname2)
             string opcode = str.substr(0, 8);
             opcode = opcode.substr(0, opcode.find(' '));
             string opnum = str.substr(8, 2);
-            int num = toDec_op(opnum); // 10진수로 변환한 opnum을 넣음
+            int num = HexToDec(opnum); // 10진수로 변환한 opnum을 넣음
             optab.insertHT(opcode, num);
             // struct node_op* t = optab.searchData(opcode);
             // cout << "optab : " << t->opcode << " " << t->opnumber << endl;
@@ -467,9 +448,9 @@ void Pass2()
         startAddr = HexToDec(address);
         textAddr = startAddr;
         total_length = total_length - startAddr;
-        objf << "h";
         if (opcode == "start")
         {
+            objf << "h";
             objf << label;
             for (int i = 0; i < 6 - label.length(); i++)
                 objf << " ";
@@ -584,6 +565,8 @@ void Pass2()
         }
 
         objf << "e" << setfill('0') << setw(6) << hex << startAddr << endl;
+        objf.close();
+        intf.close();
     }
     else {
         cout << "No such file !!! \n";

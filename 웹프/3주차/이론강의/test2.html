@@ -1,0 +1,18 @@
+<html>
+    <head><title>원의 넓이와 둘레</title></head>
+    <body>
+        <script>
+            function calculate(r) {
+                oval.result1.value = r * r * Math.PI;
+                oval.result2.value = 2 * r * Math.PI;
+            }
+        </script>
+        <h1>원의 넓이와 둘레 계산</h1><br>
+        <form name="oval">
+            반지름<input type="text" name="radius" size="10">
+            <input type="button" value="확인" onClick="calculate(radius.value)"><br><br>
+            원의 넓이<input type="text" name="result1" size="10"><br><br>
+            원의 둘레<input type="text" name="result2" size="10">
+        </form>
+    </body>
+</html>

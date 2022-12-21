@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>문제2</title>
+        <style type="text/css">
+            #div1, #div2 {margin:10px; width:700px; height:150px; padding:10px; border:1px solid #aaaaaa;}
+            #test1 {
+            text-align:center;
+            }
+            img {
+                width: 120px;
+                height: 120px;
+                border: 1px solid gray;
+            }
+            p {
+               font-weight: bold; 
+               font-size: 25px;
+            }
+        </style>
+        <script>
+            function dragover(wpevent)
+            {wpevent.preventDefault();}
+            function dragstart(wpevent)
+            { 
+                wpevent.dataTransfer.effectAllowed='move';
+                wpevent.dataTransfer.setData("Text", wpevent.target.id);
+            }
+            function dragend(wpevent)
+            {
+                wpevent.dataTransfer.clearData("Text");
+            }
+            function drop(wpevent)
+            {
+                wpevent.preventDefault();
+                var item=wpevent.dataTransfer.getData("Text");
+                wpevent.target.appendChild(document.getElementById(item));
+                wpevent.stopPropagation();
+                if(item == "item1")
+                document.getElementById("test1").innerHTML = "사과를 옮겼습니다.";
+                if(item == "item2")
+                document.getElementById("test1").innerHTML = "체리를 옮겼습니다.";
+                if(item == "item3")
+                document.getElementById("test1").innerHTML = "포도를 옮겼습니다.";
+            }
+        </script>
+    </head>
+    <body>
+        <p>과일목록</p>
+        <div id="div1" ondrop="drop(event)" ondragover="dragover(event)">
+        <img id="item1" src="apple.jpg" draggable="true" ondragstart="dragstart(event)" ondragend="dragend(event)">
+        <img id="item2" src="cherry.jpg" draggable="true" ondragstart="dragstart(event)" ondragend="dragend(event)">
+        <img id="item3" src="grape.jpg" draggable="true" ondragstart="dragstart(event)" ondragend="dragend(event)">
+        </div>
+        <br>
+        <p>장바구니</p>
+        <div id="div2" ondrop="drop(event)" ondragover="dragover(event)"></div>
+        <h3 id = "test1">
+        </h3>
+    </body>
+</html>

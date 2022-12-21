@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <title>canvas</title>
+    <style type="text/css">
+        canvas {border:1px solid blue;}
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="300" height="300"></canvas>
+    <script type="text/javascript">
+        var wpcanvas = document.getElementById("cvs");
+        var wpcontext = wpcanvas.getContext("2d");
+
+        wpcontext.fillRect(20, 20, 100, 100);
+        wpcontext.strokeRect(20, 160, 100, 100);
+        wpcontext.fillRect(160, 20, 100, 100);
+        wpcontext.clearRect(190, 50, 40, 40);
+    </script>
+</body>
+</html>

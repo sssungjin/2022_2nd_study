@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>5</title>
+        <style>
+            canvas{
+                border:1px solid gray;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="cvs" width="600" height="200"></canvas>
+        <script>
+            var wpcanvas=document.getElementById("cvs");
+            var wpcontext=wpcanvas.getContext("2d");
+
+            wpcontext.font="bold 100px 궁서체";
+            
+            var grd = wpcontext.createLinearGradient(10, 10, 400, 10);
+            grd.addColorStop("0.1", "red");
+            grd.addColorStop("0.3", "orange");
+            grd.addColorStop("0.5", "yellow");
+            grd.addColorStop("0.7", "green");
+            grd.addColorStop("0.9", "blue");
+            grd.addColorStop("1", "purple");
+
+            wpcontext.shadowColor = 'skyblue';
+            wpcontext.shadowOffsetX = 20;
+            wpcontext.shadowOffsetY = 20;
+            wpcontext.shadowBlur = 10;
+            
+            wpcontext.fillStyle = grd;
+            wpcontext.fillText("안녕하세요!",10, 120);
+        </script>
+    </body>
+</html>

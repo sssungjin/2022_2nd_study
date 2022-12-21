@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $("button").click(function() {
+                    alert($("#pic").attr("alt"));
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <img id = "pic" src="pikachu2.jpg" alt="피카츄입니다." width="500" height="500"><br><br>
+        <button>버튼을 눌러보세요.</button>
+    </body>
+</html>

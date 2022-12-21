@@ -1,0 +1,20 @@
+<html>
+    <head><title>구의 표면적과 체적 계산</title></head>
+    <script src="http://code.jquery.com/jquery-1.10.1.js"></script>
+    <script>
+        $(document).ready(function(){
+       $('#bt').click(function() {
+            var rad = $('#r').val();
+            $('#first').text(4*rad*rad*Math.PI);
+            $('#second').text(4/3*rad*rad*rad*Math.PI);
+       })
+       })
+    </script>
+    <body>
+        <h1>구의 표면적과 체적 계산</h1><br>
+        반지름 <input type="text" id="r">
+        <button id="bt">계산</button><br>
+        구의 표면적<h1 id="first"></h1><br>
+        구의 체적<h1 id="second"></h1>
+    </body>
+</html>

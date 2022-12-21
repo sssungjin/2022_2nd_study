@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>2</title>
+    </head>
+    <body>
+        <form>
+            <fieldset>
+                <legend>회원가입</legend>
+                <p>아이디 : <input type="text" placeholder="아이디 입력" required autofocus autocomplete="on"><br>
+                <p>비밀번호 : <input type="text" placeholder="8~12글자 영어및숫자" minlength="8" maxlength="12"><br>
+                <p>생년월일 : <input type="text" value="연도-월-일">
+                <p>성별 : <input type="radio" name="성별">남
+                        <input type="radio" name="성별">여
+                <p>취미 : <input type="text" list="hobby">
+                    <datalist id="hobby">
+                        <option value="영화감상"></option>
+                        <option value="음악감상"></option>
+                        <option value="독서"></option>
+                        <option value="수영"></option>
+                    </datalist>
+
+            </fieldset>
+            <input type="submit" value="보내기">
+            <input type="submit" value="취소">
+        </form>
+    </body>
+</html>

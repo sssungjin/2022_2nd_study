@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #title{position:absolute; left:15px; top:30px;}
+        #map{position:absolute; left:15px; top:180px; visibility:hidden;}
+    </style>
+    <script type="text/javascript">
+        function changeMap() {
+            if(map.style.visibility == "visible")
+                map.style.visibility == "hidden"
+            else
+                map.style.visibility = "visible"
+        }   
+    </script>
+</head>
+<body>
+    <div id ="title">
+        <a href="JavaScript:changeMap()">
+            <img src="title.jpg" border="0">
+        </a>
+        <div id="map">
+            <img src="map.jpg">
+        </div>
+    </div>
+</body>
+</html>

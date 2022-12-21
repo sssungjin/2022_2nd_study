@@ -1,0 +1,11 @@
+main : register.o main.o
+	g++ -o main register.o main.o
+
+main.o : register.h main.cpp
+	g++ -c -o main.o main.cpp
+
+register.o : register.h register.cpp
+	g++ -c -o register.o register.cpp
+
+clean :
+	rm *.o

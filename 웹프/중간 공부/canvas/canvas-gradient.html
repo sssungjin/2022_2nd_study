@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<head>
+    <title>canvas</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cvs" width="300" height="300"></canvas>
+    <script type="text/javascript">
+        var wpcanvas = document.getElementById("cvs");
+        var wpcontext = wpcanvas.getContext("2d");
+        var grad = wpcontext.createLinearGradient(10, 10, 120, 120);
+
+        grad.addColorStop(0.3, "red");
+        grad.addColorStop(0.7, "yellow");
+        wpcontext.fillStyle = grad;
+        wpcontext.fillRect(10, 10, 120, 120);
+
+        var grad1 = wpcontext.createRadialGradient(200, 200, 5, 200, 200, 60);
+        grad1.addColorStop(0, "navy");
+        grad1.addColorStop(0.2, "blue");
+        grad1.addColorStop(0.4, "royalblue");
+        grad1.addColorStop(0.6, "deepskyblue");
+        grad1.addColorStop(0.8, "skyblue");
+        grad1.addColorStop(1, "powderblue");
+        wpcontext.fillStyle = grad1;
+        wpcontext.fillRect(140, 140, 120, 120);
+
+    </script>
+</body>
+
+</html>

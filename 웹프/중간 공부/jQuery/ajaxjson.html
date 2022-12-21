@@ -1,0 +1,32 @@
+<head>
+    <title>Ajax JQuery json</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#button").click(function () {
+                var select = $("#Select").val();
+                if (select == "Y") {
+                    url = "success.json";
+                } else {
+                    url = "fail.json";
+                }
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#result").html(data.data);
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <select id="Select">
+        <option value="Y">성공</option>
+        <option value="N">실패</option>
+    </select>
+    <button id="button">버튼</button><br />
+    <div id="result"></div>
+</body>

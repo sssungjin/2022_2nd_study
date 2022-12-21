@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jQuery
+-3.5.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#box').css({
+                background: 'green'}).on({
+                    mouseover: function () {
+                        $(this).css
+                            (
+                                'background'
+                                , 'red');
+},
+                    click: function () {
+                        $(this).css
+                            (
+                                'background'
+                                , 'blue');
+},
+                    mouseout
+                        : function () {
+                            $(this).css
+                                (
+                                    'background'
+                                    , 'green');
+}
+                })
+        });
+    </script>
+</head>
+
+<body>
+    <div id="box">
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>fsd</title>
+        <script>
+            let p;
+            function init() {
+                p = document.getElementById("p");
+                p.addEventListener("mouseover", over);
+                p.addEventListener("mouseout", out);
+            }
+            function over() {
+                p.style.backgroundColor="orchid";
+            }
+            function out() {
+                p.style.backgroundColor="white";
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <h3>addEventListener 등록</h3>
+        <p id="p">
+            마우스 올리면 변경
+        </p>
+    </body>
+</html>

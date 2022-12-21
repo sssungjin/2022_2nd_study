@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>javascript</title>
+        <script>
+            function bord() {
+                let a = document.getElementById("mySpan");
+                a.style.border = "1px dotted violet";
+            }
+            function pp() {
+                let a = document.getElementsByTagName("p").length;
+                alert("<p> 태그의 개수는 " + a);
+            }
+        </script>
+    </head>
+    <body>
+        <h3>자바스크립트란?
+        <button onclick="bord()">border</button><button onclick="pp()">p</button>
+    </h3>
+    <hr>
+    <p>자바스크립트는 웹 프로그래밍 언어로서 웹 페이지를 동적 변경시킬 수 있다.</p>
+    <p><span id = "mySpan">C 언어</span>를 아는 사용자는 빠르게 학습</p>
+    <p>이벤트 등 GUI 프로그래밍에 필요한..</p>
+    </body>
+</html>

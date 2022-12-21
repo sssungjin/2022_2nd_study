@@ -1,0 +1,17 @@
+<html>
+    <head><title>색상변경</title></head>
+    <body>
+        <script>
+            var result = confirm("바탕화면 색상을 변경하고 싶으면 확인버튼을 눌러주세요!");
+
+            if(result) {
+                var input = prompt("색상을 입력하세요!!!");
+                document.bgColor = input;
+                alert("바탕화면 색상변경!!!");
+            }
+            else {
+                alert("바탕화면 색상은 다음기회에..");
+            }
+        </script>
+    </body>
+</html>
